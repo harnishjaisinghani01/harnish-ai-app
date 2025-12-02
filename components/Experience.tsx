@@ -7,7 +7,7 @@ const Experience: React.FC = () => {
     return (
         <Section id="experience" title="Experience" subtitle="Mission History">
             {/* Map Background Pattern */}
-            <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none overflow-hidden select-none">
+            <div className="experience-grid-bg">
                  <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
@@ -21,14 +21,14 @@ const Experience: React.FC = () => {
             <div className="relative max-w-6xl mx-auto z-10 pt-10 pb-20 px-4 md:px-0">
                 
                 {/* Central Timeline Spine (Desktop) */}
-                <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-brand-accent/40 to-transparent -translate-x-1/2 hidden md:block border-l-2 border-dashed border-brand-accent/30"></div>
+                <div className="experience-timeline-desktop hidden md:block"></div>
                 
                 {/* Mobile Timeline Spine */}
-                <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-brand-accent/10 via-brand-accent/30 to-brand-accent/10 md:hidden border-l border-dashed border-brand-accent/30"></div>
+                <div className="experience-timeline-mobile md:hidden"></div>
 
                 {/* Start Marker */}
-                <div className="absolute md:left-1/2 left-8 top-0 transform -translate-x-1/2 -translate-y-1/2 z-20">
-                    <div className="w-4 h-4 rounded-full bg-brand-accent shadow-[0_0_15px_rgba(56,189,248,0.8)] animate-pulse"></div>
+                <div className="experience-start-marker md:left-1/2 left-8">
+                    <div className="experience-start-marker-dot"></div>
                 </div>
 
                 <div className="space-y-12 md:space-y-24 mt-12">
@@ -60,12 +60,12 @@ const Experience: React.FC = () => {
                                 </div>
 
                                 {/* CENTER: WAYPOINT NODE */}
-                                <div className="absolute left-8 md:left-1/2 top-8 md:top-1/2 transform -translate-x-1/2 md:-translate-y-1/2 z-20 flex flex-col items-center">
-                                    <div className="relative w-12 h-12 flex items-center justify-center">
+                                <div className="experience-timeline-node left-8 md:left-1/2 top-8 md:top-1/2">
+                                    <div className="experience-node-outer">
                                         {/* Outer Ring */}
-                                        <div className="absolute inset-0 rounded-full border border-brand-accent/30 group-hover:scale-125 transition-transform duration-500"></div>
+                                        <div className="experience-node-ring"></div>
                                         {/* Inner Circle */}
-                                        <div className="w-8 h-8 bg-[#0B0F19] rounded-full border-2 border-brand-accent flex items-center justify-center shadow-[0_0_15px_rgba(56,189,248,0.4)] z-10">
+                                        <div className="experience-node-inner">
                                             {index === 0 ? 
                                                 <Flag size={14} className="text-brand-accent" /> : 
                                                 <Navigation size={14} className={`text-brand-accent ${!isEven ? 'rotate-180' : ''}`} />
@@ -88,13 +88,13 @@ const Experience: React.FC = () => {
                                         </span>
                                     </div>
 
-                                    <div className="glass-panel p-6 md:p-8 rounded-xl border border-white/10 relative overflow-hidden group-hover:border-brand-accent/40 transition-all duration-500 hover:shadow-[0_0_30px_rgba(56,189,248,0.1)]">
+                                    <div className="experience-card glass-panel p-6 md:p-8">
                                         
                                         {/* Technical Corner Markers */}
-                                        <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-brand-accent/50 rounded-tl"></div>
-                                        <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-brand-accent/50 rounded-tr"></div>
-                                        <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-brand-accent/50 rounded-bl"></div>
-                                        <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-brand-accent/50 rounded-br"></div>
+                                        <div className="experience-corner-marker experience-corner-tl"></div>
+                                        <div className="experience-corner-marker experience-corner-tr"></div>
+                                        <div className="experience-corner-marker experience-corner-bl"></div>
+                                        <div className="experience-corner-marker experience-corner-br"></div>
 
                                         {/* Header */}
                                         <div className="mb-6">
@@ -128,7 +128,7 @@ const Experience: React.FC = () => {
                                         {/* Tech Stack */}
                                         <div className="flex flex-wrap gap-2 pt-4 border-t border-white/5">
                                             {exp.techStack.map(tech => (
-                                                <span key={tech} className="px-2.5 py-1 text-xs font-mono text-brand-accent bg-brand-accent/5 rounded border border-brand-accent/10 transition-colors hover:bg-brand-accent/10">
+                                                <span key={tech} className="experience-tech-badge">
                                                     {tech}
                                                 </span>
                                             ))}
@@ -142,8 +142,8 @@ const Experience: React.FC = () => {
                 </div>
 
                 {/* End Marker */}
-                <div className="absolute md:left-1/2 left-8 bottom-0 transform -translate-x-1/2 translate-y-1/2 z-20">
-                     <div className="w-3 h-3 rounded-full bg-brand-accent/50 ring-4 ring-brand-accent/10"></div>
+                <div className="experience-end-marker md:left-1/2 left-8">
+                     <div className="experience-end-marker-dot"></div>
                 </div>
             </div>
         </Section>

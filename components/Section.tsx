@@ -34,12 +34,12 @@ const Section: React.FC<SectionProps> = ({ id, title, subtitle, children, classN
         <section 
             id={id} 
             ref={sectionRef}
-            className={`py-24 relative ${className} transition-opacity duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+            className={`py-24 relative ${className} section-fade-in ${isVisible ? 'section-fade-in-visible' : 'section-fade-in-hidden'}`}
         >
             <div className="container mx-auto px-6">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-5xl font-bold mb-4 liquid-gradient inline-block">{title}</h2>
-                    <div className="h-1 w-20 bg-gradient-to-r from-brand-accent to-purple-600 mx-auto rounded-full mb-4"></div>
+                    <h2 className="text-3xl md:text-5xl font-bold mb-4 liquid-gradient section-title-gradient">{title}</h2>
+                    <div className="section-divider"></div>
                     <p className="text-brand-muted font-mono">{subtitle}</p>
                 </div>
                 {children}

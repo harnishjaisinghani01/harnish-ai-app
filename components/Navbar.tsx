@@ -77,21 +77,12 @@ const Navbar: React.FC = () => {
     };
 
     return (
-        <nav className={`fixed left-0 right-0 z-50 transition-all duration-300 ease-in-out flex justify-center ${
-            scrolled ? 'top-4' : 'top-0'
-        }`}>
-            <div className={`
-                transition-all duration-500 ease-in-out
-                flex justify-between items-center
-                ${scrolled 
-                    ? 'w-[90%] max-w-5xl bg-[#0B0F19]/60 backdrop-blur-xl border border-white/10 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.5)] py-3 px-6' 
-                    : 'w-full bg-transparent border-b border-transparent py-6 px-6 container mx-auto'
-                }
-            `}>
+        <nav className={`navbar ${scrolled ? 'navbar-scrolled' : 'navbar-default'}`}>
+            <div className={`navbar-container ${scrolled ? 'navbar-container-scrolled' : 'navbar-container-default container mx-auto'}`}>
                 {/* Logo */}
                 <a 
                     href="#home" 
-                    className="text-2xl font-bold font-mono tracking-tighter relative z-50 shrink-0"
+                    className="navbar-logo"
                     onClick={(e) => handleNavClick(e, '#home')}
                 >
                     <span className="liquid-gradient drop-shadow-[0_0_10px_rgba(56,189,248,0.3)]">HJ</span>
@@ -101,7 +92,7 @@ const Navbar: React.FC = () => {
                 <div className="hidden md:block relative" ref={navRef}>
                     {/* The Moving Bubble Background */}
                     <div 
-                        className="absolute top-0 bottom-0 bg-white/10 border border-white/10 rounded-full backdrop-blur-md transition-all duration-300 cubic-bezier(0.4, 0, 0.2, 1) shadow-[0_0_20px_rgba(56,189,248,0.1)]"
+                        className="navbar-bubble"
                         style={{ 
                             left: bubbleProps.left, 
                             width: bubbleProps.width,
@@ -117,10 +108,10 @@ const Navbar: React.FC = () => {
                                 href={item.href}
                                 data-nav={item.href.substring(1)}
                                 onClick={(e) => handleNavClick(e, item.href)}
-                                className={`px-4 lg:px-5 py-2 text-sm font-medium rounded-full transition-colors duration-300 ${
+                                className={`navbar-link px-4 lg:px-5 ${
                                     activeSection === item.href.substring(1) 
-                                    ? 'text-brand-accent drop-shadow-[0_0_5px_rgba(56,189,248,0.5)]' 
-                                    : 'text-brand-muted hover:text-white'
+                                    ? 'navbar-link-active' 
+                                    : 'navbar-link-inactive'
                                 }`}
                             >
                                 {item.label}
@@ -131,7 +122,7 @@ const Navbar: React.FC = () => {
 
                 {/* Mobile Menu Button */}
                 <button 
-                    className={`md:hidden p-2 rounded-full transition-colors ${scrolled ? 'bg-white/5 hover:bg-white/10' : ''} text-white hover:text-brand-accent`}
+                    className={`md:hidden navbar-mobile-button ${scrolled ? 'navbar-mobile-button-scrolled' : ''}`}
                     onClick={() => setIsOpen(!isOpen)}
                 >
                     {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -139,9 +130,9 @@ const Navbar: React.FC = () => {
             </div>
 
             {/* Mobile Menu Overlay */}
-            <div className={`md:hidden fixed inset-0 bg-[#0B0F19]/98 backdrop-blur-2xl z-40 transition-transform duration-500 cubic-bezier(0.4, 0, 0.2, 1) flex items-center justify-center ${
-                isOpen ? 'translate-x-0' : 'translate-x-full'
-            }`} style={{top: '0'}}>
+            <div className={`md:hidden navbar-mobile-overlay ${
+                isOpen ? 'navbar-mobile-overlay-open' : 'navbar-mobile-overlay-closed'
+            }`}>
                 
                 {/* Close button inside overlay */}
                 <button 
@@ -157,10 +148,10 @@ const Navbar: React.FC = () => {
                             key={item.label}
                             href={item.href}
                             onClick={(e) => handleNavClick(e, item.href)}
-                            className={`text-2xl font-medium py-3 rounded-2xl border border-transparent transition-all duration-300 ${
+                            className={`navbar-mobile-link ${
                                 activeSection === item.href.substring(1) 
-                                ? 'text-brand-accent bg-white/5 border-white/10 shadow-[0_0_30px_rgba(56,189,248,0.1)]' 
-                                : 'text-brand-muted hover:text-white'
+                                ? 'navbar-mobile-link-active' 
+                                : 'navbar-mobile-link-inactive'
                             }`}
                         >
                             {item.label}

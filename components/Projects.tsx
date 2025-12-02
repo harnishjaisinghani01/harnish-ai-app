@@ -9,7 +9,7 @@ const HackerText = ({
     active, 
     className = "",
     as: Component = "p",
-    speed = 10
+    speed = 5
 }: { 
     text: string; 
     active: boolean; 
@@ -68,7 +68,7 @@ const Projects: React.FC = () => {
                 Container Height: Fixed height is crucial for the smooth accordion effect.
                 Using flex-col ensures items stack and 'minimize' vertically.
             */}
-            <div className="flex flex-col h-[700px] lg:h-[600px] gap-2 w-full max-w-6xl mx-auto transition-all duration-500">
+            <div className="projects-container">
                 {PROJECTS.map((project, index) => {
                     const isActive = activeIndex === index;
                     // Active item takes significantly more space
@@ -84,38 +84,19 @@ const Projects: React.FC = () => {
                             onMouseLeave={() => setActiveIndex(null)}
                             onClick={() => handleInteraction(index)}
                             className={`
-                                relative overflow-hidden rounded-xl border transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer group
-                                ${flexClass}
-                                ${isActive 
-                                    ? 'bg-brand-card border-brand-accent shadow-[0_0_30px_rgba(56,189,248,0.15)]' 
-                                    : 'bg-[#0B0F19] border-white/5 hover:bg-[#161B22] hover:border-white/10'
-                                }
-                                ${isInactive ? 'opacity-40 blur-[1px] hover:blur-0 hover:opacity-80' : 'opacity-100'}
+                                project-card ${flexClass}
+                                ${isActive ? 'project-card-active' : 'project-card-inactive'}
+                                ${isInactive ? 'project-card-dimmed' : ''}
                             `}
                         >
                             {/* Background Grid Pattern for active state */}
-                            <div className={`absolute inset-0 transition-opacity duration-500 ${isActive ? 'opacity-[0.05]' : 'opacity-0'}`} 
-                                style={{
-                                    backgroundImage: 'radial-gradient(circle, #38BDF8 1px, transparent 1px)', 
-                                    backgroundSize: '20px 20px'
-                                }}
-                            />
+                            <div className={`project-grid-pattern ${isActive ? 'project-grid-pattern-visible' : 'project-grid-pattern-hidden'}`} />
 
                             {/* Header Section (Always Visible) */}
-                            <div className={`
-                                absolute top-0 left-0 w-full p-4 lg:p-6 flex items-center
-                                transition-all duration-500 z-20
-                                ${isActive ? 'h-auto border-b border-brand-accent/10 bg-brand-card/50 backdrop-blur-sm' : 'h-full'}
-                            `}>
+                            <div className={`project-header ${isActive ? 'project-header-active' : 'project-header-inactive'}`}>
                                 <div className="flex items-center gap-4 lg:gap-6 w-full">
                                     {/* Project Icon */}
-                                    <div className={`
-                                        flex-shrink-0 flex items-center justify-center rounded-lg transition-all duration-500
-                                        ${isActive 
-                                            ? 'w-12 h-12 bg-brand-accent/20 text-brand-accent shadow-[0_0_15px_rgba(56,189,248,0.4)]' 
-                                            : 'w-10 h-10 bg-white/5 text-gray-500 group-hover:text-white group-hover:bg-white/10'
-                                        }
-                                    `}>
+                                    <div className={`project-icon-container ${isActive ? 'project-icon-active' : 'project-icon-inactive'}`}>
                                         <div className={`transition-transform duration-500 ${isActive ? 'scale-110' : 'scale-100'}`}>
                                             {project.icon}
                                         </div>
@@ -132,22 +113,14 @@ const Projects: React.FC = () => {
 
                                         {/* Expand Indicator */}
                                         <ChevronRight 
-                                            className={`
-                                                transition-all duration-500 text-brand-accent
-                                                ${isActive ? 'rotate-90 opacity-100' : 'opacity-0 -translate-x-4 group-hover:opacity-50 group-hover:translate-x-0'}
-                                            `} 
+                                            className={`project-expand-icon ${isActive ? 'project-expand-icon-active' : 'project-expand-icon-inactive'}`} 
                                         />
                                     </div>
                                 </div>
                             </div>
 
                             {/* Expanded Content Area (Visible only when active) */}
-                            <div className={`
-                                absolute inset-0 pt-24 px-4 lg:px-6 pb-6
-                                flex flex-col
-                                transition-all duration-500 delay-75
-                                ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'}
-                            `}>
+                            <div className={`project-content ${isActive ? 'project-content-visible' : 'project-content-hidden'}`}>
                                 {/* Description Section */}
                                 <div className="flex-grow overflow-hidden">
                                     <div className="flex items-center gap-2 mb-3 text-brand-accent/80 font-mono text-xs tracking-wider">
@@ -172,7 +145,7 @@ const Projects: React.FC = () => {
                                     </div>
                                     <div className="flex flex-wrap gap-2 mb-6">
                                         {project.techStack.map((tech, i) => (
-                                            <div key={i} className="px-2 py-1 bg-brand-accent/5 border border-brand-accent/20 rounded text-xs text-brand-accent font-mono">
+                                            <div key={i} className="project-tech-badge">
                                                 <HackerText text={tech} active={isActive} as="span" speed={20 + i * 5} />
                                             </div>
                                         ))}

@@ -12,8 +12,8 @@ const Contact: React.FC = () => {
         <Section id="contact" title="Let's Connect" subtitle="Ready to collaborate?">
             <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
                 <div className="space-y-8">
-                    <div className="glass-panel p-6 rounded-xl flex items-center gap-4 hover:translate-x-2 transition-transform">
-                        <div className="w-12 h-12 bg-brand-accent/10 rounded-full flex items-center justify-center text-brand-accent">
+                    <div className="contact-card glass-panel p-6 rounded-xl">
+                        <div className="contact-icon-container">
                             <Mail size={24} />
                         </div>
                         <div>
@@ -24,8 +24,8 @@ const Contact: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className="glass-panel p-6 rounded-xl flex items-center gap-4 hover:translate-x-2 transition-transform">
-                        <div className="w-12 h-12 bg-brand-accent/10 rounded-full flex items-center justify-center text-brand-accent">
+                    <div className="contact-card glass-panel p-6 rounded-xl">
+                        <div className="contact-icon-container">
                             <Linkedin size={24} />
                         </div>
                         <div>
@@ -36,8 +36,8 @@ const Contact: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className="glass-panel p-6 rounded-xl flex items-center gap-4 hover:translate-x-2 transition-transform">
-                        <div className="w-12 h-12 bg-brand-accent/10 rounded-full flex items-center justify-center text-brand-accent">
+                    <div className="contact-card glass-panel p-6 rounded-xl">
+                        <div className="contact-icon-container">
                             <MapPin size={24} />
                         </div>
                         <div>
@@ -50,15 +50,15 @@ const Contact: React.FC = () => {
                 <form onSubmit={handleSubmit} className="glass-panel p-8 rounded-2xl space-y-6">
                     <div>
                         <label className="block text-brand-muted text-sm mb-2">Name</label>
-                        <input type="text" className="w-full bg-brand-dark border border-white/10 rounded-lg p-3 text-white focus:border-brand-accent focus:outline-none transition-colors" placeholder="Your Name" />
+                        <input type="text" className="contact-form-input" placeholder="Your Name" />
                     </div>
                     <div>
                         <label className="block text-brand-muted text-sm mb-2">Email</label>
-                        <input type="email" className="w-full bg-brand-dark border border-white/10 rounded-lg p-3 text-white focus:border-brand-accent focus:outline-none transition-colors" placeholder="your@email.com" />
+                        <input type="email" className="contact-form-input" placeholder="your@email.com" />
                     </div>
                     <div>
                         <label className="block text-brand-muted text-sm mb-2">Message</label>
-                        <textarea rows={4} className="w-full bg-brand-dark border border-white/10 rounded-lg p-3 text-white focus:border-brand-accent focus:outline-none transition-colors" placeholder="How can I help you?"></textarea>
+                        <textarea rows={4} className="contact-form-input" placeholder="How can I help you?"></textarea>
                     </div>
                     <button type="submit" className="w-full btn-liquid text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2">
                         <Send size={18} />
