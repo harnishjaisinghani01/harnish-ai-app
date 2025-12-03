@@ -195,7 +195,7 @@ const StarryBackground: React.FC = () => {
   }, [dimensions]);
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full -z-10 bg-gradient-to-b from-slate-900 via-[#0B0F19] to-black">
+    <div className="starry-background">
       <canvas
         ref={canvasRef}
         className="block w-full h-full"

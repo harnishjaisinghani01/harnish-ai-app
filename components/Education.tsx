@@ -7,8 +7,8 @@ const Education: React.FC = () => {
     return (
         <Section id="education" title="Education" subtitle="Academic Background">
             <div className="max-w-3xl mx-auto">
-                <div className="glass-panel p-8 rounded-2xl flex flex-col md:flex-row gap-6 items-start hover:shadow-[0_0_30px_rgba(56,189,248,0.1)] transition-shadow">
-                    <div className="w-16 h-16 bg-gradient-to-br from-brand-accent to-purple-600 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg text-white">
+                <div className="education-card glass-panel p-8 rounded-2xl flex flex-col md:flex-row gap-6 items-start">
+                    <div className="education-icon-container">
                         <GraduationCap size={32} />
                     </div>
                     <div>
@@ -17,7 +17,7 @@ const Education: React.FC = () => {
                         <p className="text-brand-muted mb-4 leading-relaxed">
                             {EDUCATION.description}
                         </p>
-                        <div className="inline-block px-4 py-1 bg-white/5 text-brand-accent border border-brand-accent/30 rounded-full text-sm font-bold">
+                        <div className="education-gpa-badge">
                             CGPA: {EDUCATION.gpa}
                         </div>
                     </div>
